@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-lora);
+}
+
+@theme {
+  --color-*: initial;
+  --color-purple: rgb(178, 164, 255);
+  --color-dark: rgb(58, 58, 58);
+  --color-white: #ffffff;
+  --color-black: #000000;
+}
+
+@layer base {
+  body {
+    @apply bg-purple text-white font-sans;
+  }
+  i,
+  em {
+    font-family: var(--font-lora);
+    font-style: italic;
+  }
+  h1 {
+    @apply text-5xl font-bold tracking-tight;
+  }
+  h2 {
+    @apply text-3xl font-semibold;
+  }
+  h3 {
+    @apply text-xl font-semibold;
+  }
+  p {
+    @apply text-base leading-relaxed;
+  }
+  a {
+    @apply text-purple;
+  }
+  ul,
+  ol {
+    @apply list-none m-0 p-0;
+  }
+}

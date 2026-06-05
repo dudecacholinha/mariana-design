@@ -1,0 +1,19 @@
+---
+import { getEntry, render } from "astro:content";
+import SidebarLayout from "@layouts/SidebarLayout.astro";
+
+const about = (await getEntry("about", "index"))!;
+const { Content } = await render(about);
+---
+
+<SidebarLayout pageTitle="About">
+  <div slot="sidebar">
+    <h2 class="mb-1">{about?.data.name}</h2>
+    <p class="text-dark/60 mb-1">{about?.data.role}</p>
+    <p class="text-dark/60">{about?.data.location}</p>
+  </div>
+  <article class="max-w-prose">
+    <h2 class="mb-6">About</h2>
+    <Content />
+  </article>
+</SidebarLayout>

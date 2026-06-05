@@ -1,0 +1,24 @@
+---
+import DraggableImage from "@components/DraggableImage";
+import { scatterPositions } from "@lib/scatter";
+
+interface Props {
+  images: { src: string; alt: string }[];
+}
+
+const { images } = Astro.props;
+const positions = scatterPositions(images.length);
+---
+
+<div class="relative w-full h-[2000px]">
+  {
+    images.map((img, i) => (
+      <div
+        class="absolute"
+        style={`left: ${positions[i].left}; top: ${positions[i].top}`}
+      >
+        <DraggableImage client:visible src={img.src} alt={img.alt} />
+      </div>
+    ))
+  }
+</div>

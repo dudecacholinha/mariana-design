@@ -1,0 +1,12 @@
+---
+interface Props {
+  filled?: boolean;
+}
+const { filled = false } = Astro.props;
+---
+
+<span
+  class:list={[
+    "inline-block w-2 h-3 border border-dark rounded-sm",
+    filled ? "bg-dark/40" : "bg-transparent",
+  ]}></span>

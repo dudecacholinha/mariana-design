@@ -1,0 +1,25 @@
+---
+interface Project {
+  data: {
+    title: string;
+    description: string;
+  };
+}
+
+interface Props {
+  projects: Project[];
+}
+
+const { projects } = Astro.props;
+---
+
+<ul class="flex flex-col gap-3">
+  {
+    projects.map((p) => (
+      <li>
+        <p class="font-medium">{p.data.title}</p>
+        <p class="text-sm text-dark/60">{p.data.description}</p>
+      </li>
+    ))
+  }
+</ul>

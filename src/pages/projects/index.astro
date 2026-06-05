@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+---
+
+<BaseLayout pageTitle="Projects">
+  <section class="px-8 md:px-20 py-16 max-w-2xl">
+    <h1 class="mb-10">Projects</h1>
+    <ul class="flex flex-col gap-8">
+      {
+        projects.map((p) => (
+          <li>
+            <a href={`/projects/${p.id}`} class="no-underline">
+              <p class="font-medium text-lg">{p.data.title}</p>
+              <p class="text-dark/60 mt-1">{p.data.description}</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
