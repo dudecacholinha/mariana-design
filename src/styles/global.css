@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-neue-montreal);
+  --font-serif: var(--font-pt-serif);
+}
+
+@theme {
+  --spacing-nav: 3.5rem;
+  --color-*: initial;
+  --color-purple: rgb(178, 164, 255);
+  --color-dark: rgb(58, 58, 58);
+  --color-white: #ffffff;
+  --color-black: #000000;
+}
+
+@layer utilities {
+  .min-h-screen-nav {
+    min-height: calc(100svh - var(--spacing-nav));
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-purple text-dark font-sans;
+  }
+  i,
+  em {
+    font-family: var(--font-pt-serif);
+    font-style: italic;
+  }
+  h1 {
+    font-size: clamp(2rem, 1rem + 4vw, 5rem);
+    @apply font-normal tracking-tight text-balance;
+  }
+  h2 {
+    font-size: clamp(0.875rem, 0.5rem + 1.5vw, 1.25rem);
+    @apply font-normal text-pretty;
+  }
+  h3 {
+    @apply text-lg md:text-xl font-semibold;
+  }
+  p {
+    @apply text-base leading-relaxed text-pretty;
+  }
+
+  a {
+    @apply no-underline;
+  }
+  ul,
+  ol {
+    @apply list-none m-0 p-0;
+  }
+}

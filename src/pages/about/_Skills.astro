@@ -1,0 +1,32 @@
+---
+import Chip from "@components/Chip";
+import Skill from "@components/Skill.astro";
+import { hardSkills, softwares } from "./data";
+---
+
+<div class="grid grid-cols-1 sm:grid-cols-2 sm:w-fit gap-8">
+  <div>
+    <Chip size="sm">hard skills</Chip>
+    <ul class="mt-6 flex flex-col gap-3">
+      {
+        hardSkills.map((s) => (
+          <li>
+            <Skill label={s.label} value={s.value} max={9} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div>
+    <Chip size="sm">softwares</Chip>
+    <ul class="mt-6 flex flex-col gap-3">
+      {
+        softwares.map((s) => (
+          <li>
+            <Skill label={s.label} value={s.value} max={9} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>

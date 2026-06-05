@@ -1,0 +1,14 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+interface Props {
+  pageTitle: string;
+}
+const { pageTitle } = Astro.props;
+---
+
+<BaseLayout pageTitle={pageTitle} showFooter={false}>
+  <main class="w-full flex-1">
+    <slot />
+  </main>
+</BaseLayout>

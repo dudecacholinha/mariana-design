@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
+import HomeLayout from "@layouts/HomeLayout.astro";
+import Canvas from "./_Canvas.astro";
+
+const [entry] = await getCollection("mood");
+if (!entry)
+  throw new Error(
+    "No mood collection entry found. Add images to src/content/mood/index.md.",
+  );
+
+const images = await Promise.all(
+  entry.data.images.map(async (img) => {
+    const processed = await getImage({ src: img, width: 224, height: 160 });
+    // alt="" is intentional — mood board images are decorative
+    return { src: processed.src, alt: "" };
+  }),
+);
+---
+
+<HomeLayout pageTitle="Mood Board">
+  <Canvas images={images} />
+</HomeLayout>

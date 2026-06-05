@@ -1,0 +1,33 @@
+---
+import Chip from "@components/Chip";
+import { languages, softSkills, hobbies } from "./data";
+---
+
+<div class="grid grid-cols-2 lg:grid-cols-3 lg:w-fit gap-8">
+  <div>
+    <Chip size="sm">languages</Chip>
+    <ul class="mt-6 flex flex-col gap-4">
+      {
+        languages.map((l) => (
+          <li>
+            <p class="text-sm uppercase">{l.name}</p>
+            <p class="text-xs mt-0.5">{l.level}</p>
+            {l.cert && <p class="text-xs">{l.cert}</p>}
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <div>
+    <Chip size="sm">soft skills</Chip>
+    <ul class="mt-6 flex flex-col gap-3">
+      {softSkills.map((skill) => <li class="text-sm uppercase">{skill}</li>)}
+    </ul>
+  </div>
+  <div>
+    <Chip size="sm">hobbies</Chip>
+    <ul class="mt-6 flex flex-col gap-3">
+      {hobbies.map((hobby) => <li class="text-sm uppercase">{hobby}</li>)}
+    </ul>
+  </div>
+</div>

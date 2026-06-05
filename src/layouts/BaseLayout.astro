@@ -1,0 +1,47 @@
+---
+import { Font } from "astro:assets";
+import Navigation from "@components/Navigation.astro";
+import Footer from "@components/Footer.astro";
+import "../styles/global.css";
+
+interface Props {
+  pageTitle: string;
+  scrollLocked?: boolean;
+  showFooter?: boolean;
+}
+const { pageTitle, scrollLocked = false, showFooter = true } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle} — Portfolio</title>
+    <Font cssVariable="--font-neue-montreal" preload />
+    <Font cssVariable="--font-pt-serif" />
+  </head>
+  <body
+    class:list={[
+      "flex flex-col min-h-screen",
+      { "lg:h-screen lg:overflow-hidden": scrollLocked },
+    ]}
+  >
+    <Navigation />
+    <div
+      class:list={[
+        "flex-1 min-h-0 flex flex-col pb-16 md:pb-0 md:pt-nav px-4 md:px-6 lg:px-8",
+        { "md:pb-0": scrollLocked },
+      ]}
+    >
+      <slot />
+    </div>
+    {
+      showFooter && (
+        <div class="hidden md:block">
+          <Footer />
+        </div>
+      )
+    }
+  </body>
+</html>

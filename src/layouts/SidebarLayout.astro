@@ -1,0 +1,21 @@
+---
+import BaseLayout from "@layouts/BaseLayout.astro";
+
+interface Props {
+  pageTitle: string;
+}
+const { pageTitle } = Astro.props;
+---
+
+<BaseLayout pageTitle={pageTitle} scrollLocked>
+  <div class="flex flex-col lg:flex-row lg:h-full lg:min-h-0">
+    <aside
+      class="lg:w-72 lg:overflow-y-auto lg:shrink-0 py-8 lg:border-r border-dark/10"
+    >
+      <slot name="sidebar" />
+    </aside>
+    <main class="flex-1 lg:overflow-y-auto py-8 lg:pl-8">
+      <slot />
+    </main>
+  </div>
+</BaseLayout>

@@ -1,0 +1,53 @@
+---
+import Chip from "@components/Chip";
+import { experience, education, extraCurricular } from "./data";
+---
+
+<section>
+  <Chip size="sm">experience</Chip>
+  <ul class="mt-6 flex flex-col gap-6">
+    {
+      experience.map((item) => (
+        <li>
+          <p class="text-sm uppercase">
+            {item.title}{" "}
+            <span class="font-normal normal-case text-xs">({item.type})</span>
+          </p>
+          <p class="text-xs italic mt-1">{item.dates}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<section>
+  <Chip size="sm">education</Chip>
+  <ul class="mt-6 flex flex-col gap-6">
+    {
+      education.map((item) => (
+        <li>
+          <p class="text-sm uppercase">
+            {item.title}{" "}
+            <span class="font-normal normal-case text-xs">({item.status})</span>
+          </p>
+          <p class="text-xs mt-0.5">{item.institution}</p>
+          <p class="text-xs italic mt-1">{item.dates}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<section>
+  <Chip size="sm">extra curricular</Chip>
+  <ul class="mt-6 flex flex-col gap-6">
+    {
+      extraCurricular.map((item) => (
+        <li>
+          <p class="text-sm uppercase">{item.title}</p>
+          <p class="text-xs italic mt-1">{item.dates}</p>
+        </li>
+      ))
+    }
+  </ul>
+</section>

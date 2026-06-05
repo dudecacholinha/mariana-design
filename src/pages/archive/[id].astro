@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import SidebarLayout from "@layouts/SidebarLayout.astro";
+import Gallery from "./_Gallery.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+  return projects.map((p) => ({
+    params: { id: p.id },
+    props: { project: p },
+  }));
+}
+
+const { project } = Astro.props;
+---
+
+<SidebarLayout pageTitle={project.data.title}>
+  <div slot="sidebar">
+    <h2 class="mb-2">{project.data.title}</h2>
+    <p class="text-dark/60 mb-6">{project.data.description}</p>
+    <div class="flex flex-wrap gap-2">
+      {
+        project.data.tags.map((tag) => (
+          <span class="text-xs px-2 py-1 rounded-full bg-dark/10">{tag}</span>
+        ))
+      }
+    </div>
+    {
+      project.data.url && (
+        <a
+          href={project.data.url}
+          class="inline-block mt-6 text-sm no-underline text-dark/60"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {project.data.url}
+        </a>
+      )
+    }
+  </div>
+  <Gallery images={project.data.images} alt={project.data.title} />
+</SidebarLayout>

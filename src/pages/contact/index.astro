@@ -1,0 +1,28 @@
+---
+import SidebarLayout from "@layouts/SidebarLayout.astro";
+import Form from "./_Form";
+---
+
+<!-- Netlify detects this at build time to register the form endpoint -->
+<form name="contact" data-netlify="true" hidden>
+  <input type="text" name="name" />
+  <input type="email" name="email" />
+  <textarea name="message"></textarea>
+</form>
+
+<SidebarLayout pageTitle="Contact">
+  <div slot="sidebar">
+    <h2 class="mb-6">Contact</h2>
+    <dl class="flex flex-col gap-4">
+      <div>
+        <dt class="text-sm font-medium">Location</dt>
+        <dd class="text-dark/60">Lisbon, Portugal</dd>
+      </div>
+      <div>
+        <dt class="text-sm font-medium">Availability</dt>
+        <dd class="text-dark/60">Open to opportunities</dd>
+      </div>
+    </dl>
+  </div>
+  <Form client:load />
+</SidebarLayout>

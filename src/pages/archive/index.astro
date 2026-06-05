@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Chip from "@components/Chip";
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
+---
+
+<BaseLayout pageTitle="Archive">
+  <main>
+    <ul class="flex flex-col gap-2">
+      {
+        projects.map((p) => (
+          <li class="flex flex-col">
+            <Chip
+              as="a"
+              href={`/archive/${p.id}`}
+              size="lg"
+              className="flex justify-between items-center text-sm md:text-base"
+            >
+              <span>{p.data.title}</span>
+              <span class="text-xs shrink-0 ml-8">
+                {p.data.date.getFullYear()}
+              </span>
+            </Chip>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</BaseLayout>
